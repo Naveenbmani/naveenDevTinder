@@ -17,4 +17,9 @@
 -play with routes /test, hello/ , / etc
 - order of the routes matter a lot
 - install Postman app and make a workplace/collection and test API call
-- write logic to handle GET,POST,DELTE, PATCH, PUT ApI calls in postman
+- write logic to handle GET,POST,DELTE, PATCH, PUT ApI calls in postman,
+-Use of regesx in routes /a/,/.*fly$/
+-Reading the query params in the routes
+-reading the daynamic routes
+
+
