@@ -23,3 +23,12 @@
 -reading the daynamic routes
 
 
+-create free cluster mongodB (season1 namaste)
+-Install mongoose library (npm i mongoose)
+-connect your application to the Database-(devTinder)(connection url and DB name)
+-call the connectDb function and connect database before starting appliction 7777
+
+-create a user userSchema & user model
+- Create /signup API to add to database(POST API)
+-POST api IN pOSTman
+-error handling in try and catch
