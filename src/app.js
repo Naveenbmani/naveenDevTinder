@@ -1,22 +1,24 @@
 const express = require("express");
 
 const app = express();
-const {adminAuth, userAuth} = require("./middlewares/auth");
 
-app.use("/admin", adminAuth);
+app.get("/getAllData",( req, res) => {
+  // try{
+    console.log("User Auth cheked");
+    throw new Error("User is not authorized to get all data");
+    res.send("User is authorized to get all data");
+  // }
+  // catch(err){
+  //   res.status(500).send("User is not authorized to get all data");
+  // }
+});
 
-app.get("/admin/getAllData", (req, res) => {
-  res.send("All data is sent");
-} )
+app.use("/",(err,req, res, next) => {
+  if(err){
+    res.status(500).send("There was a server side error");
+  }
+ })
 
-app.get("/admin/deletedUser", (req, res) => {
-  res.send("Deleted User");
-} )
-
-
-app.get("/user", userAuth,(req, res) => {
-  res.send("User data is sent");
-} )
 app.listen(7777, () => {
   console.log("server is successfully listening on port");
 })
