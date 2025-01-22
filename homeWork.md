@@ -32,3 +32,6 @@
 - Create /signup API to add to database(POST API)
 -POST api IN pOSTman
 -error handling in try and catch
+
+- Add the express.json() middleware to your app
+- make your signup API dynamic to recieve data from the user
