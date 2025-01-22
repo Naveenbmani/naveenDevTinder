@@ -35,3 +35,9 @@
 
 - Add the express.json() middleware to your app
 - make your signup API dynamic to recieve data from the user
+-user.findOne with dublicate email ids, which object is returned
+- make delete the user using findByIdAndDelete
+- what is the d/f PUT and PATCH
+- API update using patch
+- Go through the mongoose documentation
+
