@@ -14,7 +14,7 @@ app.post("/signup", async (req, res) => {
     await user.save(); //save the user object to the database
     res.send("user added sucessfully");
   } catch (err) {
-    res.status(400).send("Something went error", err.message);
+    res.status(404).send(`Something went wrong: ${err.message}`);
   }
 });
 
