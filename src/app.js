@@ -74,14 +74,28 @@ app.delete("/user", async (req, res) => {
 });
 
 //Update API - patch/ user- update user from the database
-app.patch("/user", async (req, res) => {
-  const userId = req.body._id;
+app.patch("/user/:userId", async (req, res) => {
+  const userId = req.params.userId; //Get the user id from the request parameter(url)
+  // const userId = req.body._id;
   const data = req.body;
   try {
+    //API level validation for the user first name last name and email(should not be updated);
+    const ALLOWED_UPDATES = ["gender", "skills", "about", "photoUrl", "age"];
+    const isUpdateAllowed = Object.keys(data).every((update) => ALLOWED_UPDATES.includes(update));
+
+    if (!isUpdateAllowed) {
+      res.status(400).send("upate not allowed");
+    }
+    // Should not updated more than 10 skills"skills":["Java", "React","CSS","HTML","JAVSCRIPT","Java", "React","CSS","HTML","JAVSCRIPT","Java", "React","CSS","HTML","JAVSCRIPT"]
+    if(data?.skills.length > 10){
+      res.status(400).send("Skills should not be more than 10");
+    }
+    //API level validation ending
+
     const user = await User.findByIdAndUpdate({_id:userId}, data);
     res.send("User updated successfully");  
   } catch (err) {
-    res.status(400).send("Something went error");
+    res.status(400).send("Something went error, user is not updated");
   }   
 });
 connectDB()

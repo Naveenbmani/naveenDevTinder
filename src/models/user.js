@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 const useSchema = new mongoose.Schema({ 
     firstName: {
         type: String,
         required: true,
-        minlength: 6,//minlength because the type is string
+        minlength: 3,//minlength because the type is string
         maxlength: 100,//maxlength because the type is string
     },
     lastLame: {
@@ -15,11 +16,21 @@ const useSchema = new mongoose.Schema({
         required: true,
         unique: true,
         trim: true,
+        validate(value) {
+            if (!validator.isEmail(value)) {
+                throw new Error("Email is invalid");
+            }
+        }
     },
 
     password: {
         type: String,
         required: true,
+        validate(value) {
+            if (!validator.isStrongPassword(value)) {
+                throw new Error("Password is not strong enough");
+            }
+        }
     },
     age: {
         type: Number,
@@ -39,7 +50,12 @@ const useSchema = new mongoose.Schema({
     skills: {
         type: [String],
     },
-});
+},
+{
+    timestamps: true
+}
+);
+
 
 
 
